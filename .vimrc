@@ -6,10 +6,6 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
-" Show hybrid linenumbers
-set number
-set relativenumber
-
 " Norm
 vnoremap <C-n> :norm 
 
@@ -20,4 +16,17 @@ highlight MatchParen ctermbg=Gray
 " hi CursorLine cterm=NONE ctermbg=Gray
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
+
+" Show linenumbers
+set number
+set number relativenumber
+" auto toggle line numbers
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+"This unsets the "last search pattern" register by hitting return
+nnoremap <CR> :nohlsearch<CR><CR>
 
