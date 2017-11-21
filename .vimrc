@@ -6,8 +6,9 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
-" Show linenumbers
+" Show hybrid linenumbers
 set number
+set relativenumber
 
 " Norm
 vnoremap <C-n> :norm 
