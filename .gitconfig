@@ -3,3 +3,5 @@
 # Please adapt and uncomment the following lines:
 	name = Daniel Kassler
 	email = dkassler@mathematica-mpr.com
+[push]
+	default = matching
