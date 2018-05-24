@@ -5,8 +5,6 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
-" Show linenumbers
-set number
 
 " Norm
 vnoremap <C-n> :norm 
@@ -19,8 +17,10 @@ highlight MatchParen ctermbg=Gray
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
 
-" auto toggle line numbers
+" Show linenumbers
+set number
 set number relativenumber
+" auto toggle line numbers
 augroup numbertoggle
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -29,4 +29,15 @@ augroup END
 
 "This unsets the "last search pattern" register by hitting return
 nnoremap <CR> :nohlsearch<CR><CR>
+
+" Change cursor shape based on mode?
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
+    " let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>[4 q\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
+else
+    let &t_SI = "\<Esc>[6 q"
+    " let &t_SR = "\<Esc>[4 q"
+    let &t_EI = "\<Esc>[2 q"
+endif
 
