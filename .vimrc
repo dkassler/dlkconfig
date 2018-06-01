@@ -43,3 +43,7 @@ endif
 
 " File picker for buffer
 :nnoremap <F5> :buffers<CR>:buffer<Space>
+
+" Pathogen
+execute pathogen#infect()
+
