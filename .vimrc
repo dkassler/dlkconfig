@@ -44,6 +44,9 @@ endif
 " File picker for buffer
 :nnoremap <F5> :buffers<CR>:buffer<Space>
 
+" Toggle paste mode and line number for copy
+set pastetoggle=<F2>
+
 " Pathogen
 execute pathogen#infect()
 
