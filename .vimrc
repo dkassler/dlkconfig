@@ -9,6 +9,21 @@ set expandtab
 " Norm
 vnoremap <C-n> :norm 
 
+" Colorscheme
+colorscheme eldar
+highlight Visual ctermbg=Gray
+if has("terminfo")
+  let &t_Co=16
+  let &t_AB="\<Esc>[%?%p1%{8}%<%t%p1%{40}%+%e%p1%{92}%+%;%dm"
+  let &t_AF="\<Esc>[%?%p1%{8}%<%t%p1%{30}%+%e%p1%{82}%+%;%dm"
+else
+  let &t_Co=16
+  let &t_Sf="\<Esc>[3%dm"
+  let &t_Sb="\<Esc>[4%dm"
+endif
+highlight Visual ctermbg=Gray
+highlight Visual ctermfg=Black
+
 " Matching paren highlighted gray
 highlight MatchParen ctermbg=Gray
 
@@ -46,6 +61,25 @@ endif
 
 " Toggle paste mode and line number for copy
 set pastetoggle=<F2>
+
+" Don't automatically indent when pasting in text. Source:
+" https://stackoverflow.com/a/38258720/5347093
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+" quote/unquote
+" 'quote' a word
+nnoremap qw :silent! normal mpea'<Esc>bi'<Esc>`pl
+" double "quote" a word
+nnoremap qd :silent! normal mpea"<Esc>bi"<Esc>`pl
+" remove quotes from a word
+nnoremap wq :silent! normal mpeld bhd `ph<CR>
 
 " Pathogen
 execute pathogen#infect()
